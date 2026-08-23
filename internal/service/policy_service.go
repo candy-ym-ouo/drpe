@@ -29,7 +29,11 @@ func (s PolicyService) Create(p *model.Policy) (*model.Policy, error) {
 	}
 	return p, s.Policies.Create(p)
 }
-func (s PolicyService) Get(id int64) (*model.Policy, error) { return s.Policies.Get(id) }
+func (s PolicyService) Get(id int64) (*model.Policy, error) {
+	p, err := s.Policies.Get(id)
+	if err != nil { return nil, err }
+	return p, nil
+}
 func (s PolicyService) List() ([]model.Policy, error)       { return s.Policies.List() }
 func (s PolicyService) Activate(id int64) error {
 	p, e := s.Get(id)
