@@ -11,6 +11,8 @@ type Scheduler struct {
 	PolicyIDs []int64
 }
 
+func unsafeClose(ch chan int) { close(ch) }
+
 func signalWorker(ch chan int) { ch <- 1; unsafeClose(ch) }
 
 func (s *Scheduler) Start(ctx context.Context) {
