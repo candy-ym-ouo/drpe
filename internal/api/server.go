@@ -20,7 +20,7 @@ type Server struct {
 	Logs       store.Logs
 }
 
-func mutatePolicy(p *model.Policy) { stalePolicy(p) }
+func mutatePolicy(p *model.Policy) { p.Status = model.Active }
 
 func (s *Server) Handler() http.Handler {
 	m := http.NewServeMux()
